@@ -1,0 +1,15 @@
+Gabriel e Jeymsson - Sintaxe de Templates - 16/04
+Isaura e Fernando - Dados Computados e Observadores - 18/04
+Manoel e Douglas -Interligações de Classe e Estilo - 23/04
+Atiele e Fred - Renderização Condicional - 25/04
+Victor e José - Renderização de Listas - 30/04
+Klisnmann e Paulo - Manipulação de Eventos - 02/05
+José Alexandre e Luis Miguel - Interligações em Formulários - 07/05
+Anderson e Emanuel - Componentes - 09/05
+
+Estrutura:
+
+Explicação
+Exemplo de uso (Codigo Fonte e explicar)
+Passar um exercício para a turma fazer (Se possível, ao final fornecer codígo fonte
+do exercício para a turma)
