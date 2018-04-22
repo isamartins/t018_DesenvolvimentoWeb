@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Dados Computados - Exemplos</title>
+    </head>
+    <body>
+
+            <div id="example">
+                    
+                <p>Mensagem ao contrário: "{{ reverseMessage() }}"</p>
+        
+            </div>
+        
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <script>
+
+        var vm = new Vue({
+        el: '#example',
+            methods: {
+                reverseMessage: function () {
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        })
+
+    </script>
+
+</html>
