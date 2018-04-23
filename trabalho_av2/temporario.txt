@@ -1,0 +1,48 @@
+Anotações Importantes
+
+
+
+// poderia ser qq id        //interpolação do valor (renderizar) operadores de mustachess         //tag script p poder estanciar o objeto do vue js
+ el: '#app', //elemento selector
+data:{ //propriedade q os elementos
+                nome:"yiiuh"
+            },
+
+===========================
+COMPUTADO
+
+Realizado sempre que 
+
+**************
+OBSERVADORES
+
+Serve para variáveis que foram alteradas.
+
+No Vue, as dependências de um componente são automaticamente observadas durante sua renderização, desta forma o sistema sabe precisamente quais componentes precisam ser renderizados quando o estado muda. Pode-se considerar que cada componente já tem shouldComponentUpdate automaticamente implementado para você, e sem os problemas com componentes filhos.
+
+De forma geral, isto remove a necessidade de conhecimento de toda uma gama de otimizações de desempenho das responsabilidades do desenvolvedor, permitindo-o focar mais em construir a aplicação em si enquanto ela cresce.
+
+
+Desempenho em Execução
+Vue tem melhor desempenho e é muito, muito mais fácil de otimizar, por não utilizar verificação suja de alterações de dados no escopo (dirty checking). AngularJS torna-se lento quando há um grande número de observadores (watchers), pois a cada vez que qualquer coisa muda no escopo, todos esses observadores precisam ser reavaliados. Além disso, este laço de verificação suja (chamado digest cycle), pode ter que executar várias vezes para "estabilizar" se algum observador aciona outra atualização. Usuários do AngularJS por vezes têm de recorrer a técnicas esotéricas para contornar este ciclo e, em algumas situações, não há simplesmente nenhuma maneira de otimizar um escopo com muitos observadores.
+
+O Vue definitivamente não sofre com isso, pois usa um sistema de observação por rastreamento de dependências transparente, com enfileiramento assíncrono - todas as alterações disparam de forma independente, a menos que tenham dependências explícitas.
+
+Curiosamente, há algumas semelhanças na forma como Angular 2 e Vue estão lidando com estes problemas existentes no AngularJS.
+
+Listagem 12. Definindo propriedades getter e setter ao objeto
+
+Object.defineProperty(objeto, 'texto', { 
+    get: function () { 
+      return texto; 
+    }, 
+    set: function (novoValor) { 
+      texto = novoValor;  
+      h2.innerHTML = texto;
+    } 
+  });
+Para atestar seu funcionamento, basta alterar o valor da propriedade  objeto.texto no console e verificar o comportamento do  h2 na página. O JavaScript e sua função  defineProperty nos asseguram que o  innerHTML do  h2 será modificado sempre que a propriedade definida sofrer qualquer alteração.
+
+Esse exato mecanismo foi usado pelo Vue.js. Uma vez que os dados são passados para a instância  Vue, todas as suas propriedades passam pelo método  Object.defineProperty, que atribui getters e setters reativos a eles. Para cada diretiva existente numa página, é adicionado um observador, que será notificado de acordo com o método estabelecido.
+
+

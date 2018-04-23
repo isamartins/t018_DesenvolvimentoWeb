@@ -1,0 +1,41 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Vue Js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+        <div id="app"> 
+                <p>NomeCompleto: "{{ fullName }}"</p>
+            </div>
+
+    <script> 
+       var app = new Vue({
+            el: '#app',
+            data:{
+                firstName:'Yuri',
+                lastName:'Camargo',
+                fullName: 'Yuri Camargo'
+            },
+
+        computed: {
+            fullName: {
+                // getter
+                get: function () {
+                return this.firstName + ' ' + this.lastName
+                },
+                // setter
+                set: function (newValue) {
+                var names = newValue.split(' ')
+                this.firstName = names.shift()
+                this.lastName = names.pop()
+                }
+            }
+        }
+
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Vue Js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <div id="app"> 
+            <p>Nome: "{{ nome }}"</p>
+            <p>Computed reversed message: "{{ reversedMessage }}"</p>
+            <p>Computed reversed message: "{{ reversedMessageq }}"</p>
+    </div>
+
+    <script> // poderia ser qq id        //interpolação do valor (renderizar) operadores de mustachess         //tag script p poder estanciar o objeto do vue js
+       var app = new Vue({
+            el: '#app', //elemento selector
+            data:{ //propriedade q os elementos
+                nome:"yiiuh"
+            },
+
+        computed:{
+            reversedMessage: function(){
+                return this.nome.split('').reverse().join('')
+            },
+            reversedMessageq: function(){
+                return this.nome.toUpperCase()
+            }
+        },
+
+        watch:{
+            nome(novoNome, velhoNome){
+                console.log('Nome Novo:', novoNome);
+                console.log('Nome Antigo:', velhoNome);
+            }
+        },
+    })
+    </script>
+</body>
+</html>
