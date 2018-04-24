@@ -1,58 +1,57 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>Vue Js</title>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
 
-    <div id="app">
+    <div id="watch-example">
         <p>
-            Faça uma pergunta do tipo sim/não:
-            <input v-model="question">
+          Faça uma pergunta do tipo sim/não:
+          <input v-model="question">
         </p>
         <p>{{ answer }}</p>
-    </div>
+      </div>
 
-    <script> 
-       var app = new Vue({
-            el: '#app', 
-            data: {
-                question: '',
-                answer: 'Eu não posso responder até que você faça uma pergunta!'
+      <script>
+      var watchExampleVM = new Vue({
+        el: '#watch-example',
+        data: {
+          question: '',
+          answer: 'Eu não posso responder até que você faça uma pergunta!'
+        },
+        watch: {
+          question: function (newQuestion, oldQuestion) {
+            this.answer = 'Esperando você parar de escrever...'
+            this.getAnswer()
+          }
+        },
+        methods: {
+          getAnswer: _.debounce(
+            function () {
+              var vm = this
+              if (vm.question.indexOf('?') === -1) {
+                vm.answer = 'Perguntas geralmente têm uma interrogação. ;-)'
+                return
+              }
+              vm.answer = 'Pensando...'
+              axios.get('https://yesno.wtf/api')
+                .then(function (response) {
+                  vm.answer = response.data.answer === 'yes' ? 'Sim.' :
+                    response.data.answer === 'no' ? 'Não.' : 'Talvez!'
+                })
+                .catch(function (error) {
+                  vm.answer = 'Erro! Não pode executar a API. ' + error
+                })
             },
-            watch: {
-                function (newQuestion, oldQuestion) {
-                this.answer = 'Esperando você parar de escrever...'
-                this.getAnswer()
-            }
-            },
-
-            methods: {
-                getAnswer: _.debounce(
-                    function () {
-                        var vm = this
-                        if (vm.question.indexOf('?') === -1) {
-                            vm.answer = 'Perguntas geralmente têm uma interrogação. ;-)'
-                            return
-                        }
-                        vm.answer = 'Pensando...'
-                        axios.get('https://yesno.wtf/api')
-                        .then(function (response) {
-                            vm.answer = response.data.answer === 'yes' ? 'Sim.' :
-                            response.data.answer === 'no' ? 'Não.' : 'Talvez!'
-                        })
-                        .catch(function (error) {
-                            vm.answer = 'Erro! Não pode executar a API. ' + error
-                        })
-                    },
-                    500
-                )
-            }
-        })
-    </script>
+            500
+          )
+        }
+      })
+      </script>
 </body>
 </html>
