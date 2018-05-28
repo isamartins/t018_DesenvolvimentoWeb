@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Box Star Fashion</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="app">
+            <img src="imagens/logo.JPG"> <h1> O BOX VIRTUAL MAIS FASHION DA WEB </h1>
+            <p> Há 30 anos no mercado, a loja “Star Fashion” começou como loja física no box do Centro Fashion e depois expandiu seus                 negócios para a internet, sendo hoje uma das maiores referências no ramo.
+                No site é possível encontrar roupas, calçados e acessórios para todas as faixas etárias e estilos. Dentro das categorias de produtos, a Star Fashion possui um Blog com dicas de estilo e a sessão “Look Book” com looks prontos para copiar!
+                A entrega é feita em todo o país e o frete é sem custo em compras acima de R$99,00 nas regiões Sul e Sudeste, e em compras acima de 149,99 nas demais regiões do país.</p>
+            <table class="imagens">
+                
+                <tr>
+                    <td>
+                        <img src="imagens/m_blusa2.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/m_blusa1.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/m_blusa3.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/m_blusa4.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/m_cueca1.jpg">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <img src="imagens/w_roupa1.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/w_jaqueta.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/w_calsa1.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/w_vestido1.jpg">
+                    </td>
+                    <td>
+                        <img src="imagens/w_vestido2.jpg">
+                    </td>
+                </tr>
+                
+            </table>
+            
+            <div id="todo-list-example">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Adicione"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+            
+            <a href="pedido.html">REALIZAR PEDIDO</a> <br><br>
+                
+            </div>
+        
+
+        </div>
+        
+        <script>
+            Vue.component('todo-item', {
+              template: '\
+                <li>\
+                  {{ title }}\
+                  {{ image }}\
+                  </li>',
+              props: ['title']
+            })
+
+            new Vue({
+              el: '#todo-list-example',
+              data: {
+                newTodoText: '',
+                todos: [
+                  {
+                    id: 1,
+                    title: 'Jaqueta',
+                  },
+                  {
+                    id: 2,
+
+                    title: 'Vestido',
+                  },
+                  {
+                    id: 3,
+                    title: 'Camisa',
+                  },
+
+                  {
+                    id: 4,
+                    title: 'Cueca',
+                  },
+
+                  {
+                    id: 5,
+                    title: 'Sapato',
+                  },
+                ],
+                nextTodoId: 4
+              },
+              methods: {
+                addNewTodo: function () {
+                  this.todos.push({
+                    id: this.nextTodoId++,
+                    title: this.newTodoText
+                  })
+                  this.newTodoText = ''
+                }
+              }
+            })
+
+        </script>
+
+    </body>
+    
+</html>

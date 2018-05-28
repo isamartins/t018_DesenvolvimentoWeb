@@ -1,0 +1,25 @@
+body{
+    background-color: beige;
+}
+
+h5{
+    color: red
+}
+
+p{
+    color: black
+}
+
+table{
+    border: 1px;
+    padding: 0px;
+    border-spacing: 5px;
+    width: auto
+}
+
+.imagens img {
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+}

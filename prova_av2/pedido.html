@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        
+    </head>
+    <body>
+        <br />
+        
+        <div id="app" class="container">
+            <img src="imagens/logo.JPG"> <h1> O BOX VIRTUAL MAIS FASHION DA WEB </h1>
+            <p> Preencha seus dados para finalizar o pedido.</p>
+            <form>
+                <div class="row">
+                    <!-- Nome Completo --> 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input v-model="nome" type="text" class="form-control" id="nome" placeholder="Ex: Maria Clara de Almeida">
+                        </div>
+                    </div> <!-- /col-md-6 -->
+                    <!-- /Nome Completo --> 
+                    
+                    <!-- Sexo -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="sexo">Sexo</label>
+                            <select class="form-control" v-model="sexo">
+                                <option>Feminino</option>
+                                <option>Masculino</option>
+                                <option>Outro</option>
+                            </select>
+                        </div> <!-- /form-group -->
+                    </div> <!-- /col-md-3 -->
+                    <!-- /Sexo -->
+                    
+                </div> <!-- /row -->
+                
+                <div class="row">
+                    <!-- Cidade -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input v-model="cidade" type="text" class="form-control" id="cidade" placeholder="Ex: Aquiraz">
+                        </div>
+                    </div><!-- /col-md-3 -->
+                    <!-- /Cidade -->
+                    
+                    <!-- Endereço -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="endereco">Endereço</label>
+                            <input v-model="endereco" type="text" class="form-control" id="endereco" placeholder="Ex: Rua B">
+                        </div>
+                    </div> <!-- /col-md-6 -->
+                    <!-- /Endereço -->
+                    
+                    <!-- Estado -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <select v-model="estadosel" class="form-control">
+                                <option v-for="estado in estados">
+                                    {{ estado.estado }}
+                                </option>
+                            </select>
+                        </div>
+                    </div> <!-- /col-md-3 -->
+                    <!-- /Estado -->
+
+                </div> <!-- /row -->
+                
+                <!-- Descrição do pedido -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="descricao">Descrição</label>
+                            <textarea v-model="descricao" id="descricao" class="form-control"></textarea>
+                        </div>                        
+                    </div> <!-- /col-md-12 -->
+                </div> <!-- /row -->
+                <!-- /Descrição do pedido -->
+                
+                <!-- Checkbox Entrega Imediata -->
+                <div class="row" v-if="(estadosel == '' || estadosel == 'Ceará') && (cidade == '' || cidade == 'Fortaleza')">
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Entrega Imediata</label>
+                          </div>
+                    </div> <!-- /col-md-12 -->
+                </div> <!-- /row -->
+                <!-- /Checkbox Entrega Imediata -->
+
+                <br />
+                
+                <p v-if="nome">Nome: {{ nome }}</p>
+                <p v-if="sexo">Sexo: {{ sexo }}</p>
+                <p v-if="estadosel">Estado: {{ estadosel }}</p>
+                <p v-if="cidade">Cidade: {{ cidade }}</p>
+                <p v-if="endereco">Endereço: {{ endereco }}</p>
+                <p v-if="descricao">Descrição: {{ descricao }}</p>
+                
+                <br />
+
+                <div class="row">
+                    <!-- Botão Limpar -->
+                    <div class="col-md-1">
+                        <button type="reset" class="btn btn-danger">Limpar</button>
+                    </div> <!-- /col-md-1 -->
+                    <!-- /Botão Limpar -->
+                    
+                    <!-- Botão Enviar -->
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div> <!-- /col-md-1 -->
+                    <!-- /Botão Enviar -->
+                </div> <!-- /row -->
+              
+            </form>
+        
+        </div>
+        
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    nome: '',
+                    sexo: '',
+                    cidade: '',
+                    estadosel: '',
+                    estados: [ { estado: 'Ceará' }, { estado: 'Pernambuco' },{ estado: 'Rio de Janeiro' }, { estado: 'São Paulo' } ],
+                    endereco: '',
+                    descricao: ''
+                }
+                
+            })
+        </script>
+        
+    </body>
+</html>
